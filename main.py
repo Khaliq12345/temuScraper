@@ -1,5 +1,6 @@
 import uvicorn
 from src.bot import run
+from src.config import ENV
 
 
 def test():
@@ -14,9 +15,9 @@ def test():
 def main():
     uvicorn.run(
         "src.api:app",
-        host="localhost",
+        host="0.0.0.0",
         port=8000,
-        reload=True,
+        reload=ENV == "dev",
     )
 
 

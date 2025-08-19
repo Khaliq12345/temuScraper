@@ -15,8 +15,8 @@ DB_DATABASE = os.getenv("DB_DATABASE", "")
 DB_USERNAME = os.getenv("DB_USERNAME", "")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 # Connection URL
-DATABASE_URL = (
-    f"{DB_CONNECTION}://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
-)
+DATABASE_URL = f"{DB_CONNECTION}://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
 # ENGINE
 ENGINE = create_engine(DATABASE_URL)
+# Environment
+ENV = os.getenv("ENV", "dev")
