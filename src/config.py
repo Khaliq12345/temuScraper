@@ -7,6 +7,7 @@ load_dotenv()
 CAPTCHA_KEY = os.getenv("CAPTCHA_KEY", "")
 EMAIL = os.getenv("EMAIL", "")
 PASSWORD = os.getenv("PASSWORD", "")
+API_KEY = os.getenv("API_KEY", "")
 # Database
 DB_CONNECTION = os.getenv("DB_CONNECTION", "postgresql+psycopg2")
 DB_HOST = os.getenv("DB_HOST", "localhost")
