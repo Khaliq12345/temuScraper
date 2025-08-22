@@ -12,7 +12,7 @@ def get_session():
     try:
         yield session
     except Exception as e:
-        raise ValueError(f"DB error - {e}")
+        print(f"DB error - {e}")
     finally:
         session.close()
 

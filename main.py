@@ -1,14 +1,14 @@
 import uvicorn
 from src.bot import run
 from src.config import ENV
+import asyncio
 
 
 def test():
-    result = run(
+    run(
         "https://www.temu.com/search_result.html?search_key=birthday%20gift",
         3,
     )
-    print(result)
 
 
 # Launch API
@@ -22,5 +22,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # test()
-    main()
+    test()
+    # main()

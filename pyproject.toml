@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.116.1",
+    "nodriver>=0.47.0",
     "pandas>=2.3.1",
     "playwright>=1.54.0",
     "playwright-stealth>=2.0.0",
