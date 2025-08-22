@@ -109,6 +109,7 @@ def run(url: str, click_number: int) -> None:
         page.get_by_role("button", name="Submit search").click()
 
         human_wait(page)
+        check_and_solve_captcha(page)
         send_image_to_supabase(page)
 
         # login(page)
