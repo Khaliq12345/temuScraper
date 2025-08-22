@@ -108,9 +108,13 @@ def run(url: str, click_number: int) -> None:
         page.get_by_role("searchbox").fill("games")
         page.get_by_role("button", name="Submit search").click()
 
+        # listing page captcha solving
         human_wait(page)
         send_image_to_supabase(page)
         check_and_solve_captcha(page)
+
+        # listing page waiting
+        human_wait(page)
         send_image_to_supabase(page)
 
         # login(page)
