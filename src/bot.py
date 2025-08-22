@@ -7,9 +7,11 @@ from src.database_manager import save_data, update_process_status
 from src.parser import extract_goods_from_html
 from src import config
 from supabase import Client
+from time import time
 
 
-def send_image_to_supabase():
+def send_image_to_supabase(page: Page):
+    page.screenshot(path="image.png")
     supabase = Client(
         supabase_url=config.SUPABASE_URL,
         supabase_key=config.SUPABASE_KEY,
@@ -17,7 +19,7 @@ def send_image_to_supabase():
     with open("image.png", "rb") as f:
         response = supabase.storage.from_("images").upload(
             file=f,
-            path="image.png",
+            path=f"image_{int(time())}.png",
             file_options={"cache-control": "3600", "upsert": "false"},
         )
 
@@ -89,6 +91,7 @@ def run(url: str, click_number: int) -> None:
         # login into Temu
         page = context.new_page()
         page.goto("https://www.temu.com/", timeout=60000)
+        send_image_to_supabase(page)
 
         # accept cookies
         try:
@@ -96,16 +99,17 @@ def run(url: str, click_number: int) -> None:
         except Exception as e:
             print(f"Cookie not found - {e}")
 
+        send_image_to_supabase(page)
         check_and_solve_captcha(page)
         human_wait(page)
+        send_image_to_supabase(page)
 
         # page.get_by_role("searchbox", name="women hot clothes").click()
         page.get_by_role("searchbox").fill("games")
         page.get_by_role("button", name="Submit search").click()
 
         human_wait(page)
-        page.screenshot(path="image.png")
-        send_image_to_supabase()
+        send_image_to_supabase(page)
 
         # login(page)
         #
