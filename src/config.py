@@ -20,3 +20,6 @@ DATABASE_URL = f"{DB_CONNECTION}://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_POR
 ENGINE = create_engine(DATABASE_URL)
 # Environment
 ENV = os.getenv("ENV", "dev")
+
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")

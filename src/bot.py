@@ -6,6 +6,20 @@ from temu_captcha_solver.playwrightsolver import expect
 from src.database_manager import save_data, update_process_status
 from src.parser import extract_goods_from_html
 from src import config
+from supabase import Client
+
+
+def send_image_to_supabase():
+    supabase = Client(
+        supabase_url=config.SUPABASE_URL,
+        supabase_key=config.SUPABASE_KEY,
+    )
+    with open("image.png", "rb") as f:
+        response = supabase.storage.from_("images").upload(
+            file=f,
+            path="image.png",
+            file_options={"cache-control": "3600", "upsert": "false"},
+        )
 
 
 def process_page(page: Page, click_number: int) -> None:
@@ -90,6 +104,8 @@ def run(url: str, click_number: int) -> None:
         page.get_by_role("button", name="Submit search").click()
 
         human_wait(page)
+        page.screenshot(path="image.png")
+        send_image_to_supabase()
 
         # login(page)
         #

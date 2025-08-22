@@ -15,6 +15,7 @@ dependencies = [
     "python-dotenv>=1.1.1",
     "selectolax>=0.3.33",
     "sqlmodel>=0.0.24",
+    "supabase>=2.18.1",
     "temu-captcha-solver>=0.6.8",
     "uvicorn>=0.35.0",
 ]
